@@ -4,30 +4,30 @@ Spyder Editor
 
 This is a temporary script file.
 """
-FLC : Speed control of a vehicle
-Let two fuzzy inputs (speed difference (SD) and acceleration (A)) and one fuzzy 4 output throttle control (TC) be there.
+#FLC : Speed control of a vehicle
+#Let two fuzzy inputs (speed difference (SD) and acceleration (A)) and one fuzzy 4 output throttle control (TC) be there.
 
-X: Universe of discourse [0,240]
+#X: Universe of discourse [0,240]
 
- Partitions:
-  NL: Open left MF (a = 30, b = 6theta)
-  NM: Traingular (a = 30, b=60,c=90)
-  NS: Traingular (a = 60, b = 90 , t=12 theta)
-  ZE: Traingular (a = 90, b = 120 , c = 150
-  PS: Traingular (a = 120, b=150,c=180) PM: Traingular (a = 150, b = 180 c=210)
-  PL: Open right (a = 180, b=210)
+# Partitions:
+ # NL: Open left MF (a = 30, b = 6theta)
+ # NM: Traingular (a = 30, b=60,c=90)
+ # NS: Traingular (a = 60, b = 90 , t=12 theta)
+ # ZE: Traingular (a = 90, b = 120 , c = 150
+ # PS: Traingular (a = 120, b=150,c=180) PM: Traingular (a = 150, b = 180 c=210)
+  #PL: Open right (a = 180, b=210)
 
-Rules
+#Rules
 
-R1: if SD is NL and A is ZE then TC is PL
-R2: if SD is ZE and A is NL then TC is PL
-R3: if SD is NM and A is ZE then TC is PM
-R4: if SD is NS and A is PS then TC is PS
-R5: if SD is PS and A is NS then TC is NS
-R6: if SD is PL and A is ZE then TC is NL
-R7: if SD is ZE and A is NS then TC is PS
-R8: if SD is ZE and A is NM then TC is PM
-"""
+#R1: if SD is NL and A is ZE then TC is PL
+#R2: if SD is ZE and A is NL then TC is PL
+#R3: if SD is NM and A is ZE then TC is PM
+#R4: if SD is NS and A is PS then TC is PS
+#R5: if SD is PS and A is NS then TC is NS
+#R6: if SD is PL and A is ZE then TC is NL
+#R7: if SD is ZE and A is NS then TC is PS
+#R8: if SD is ZE and A is NM then TC is PM
+
 
 import numpy as pp
 speed = 40
@@ -67,7 +67,7 @@ ZE = triangular (x, 90, 120, 150)
 if x> 120 and x<180:
 PS triangular (x, 120, 150, 180)
 if x> 150 and x<210:
-PM triangular (x, 120, 150, 180)
+PM = triangular (x, 120, 150, 180)
 if x> 180 and x<240:
 PL = openRight (x,180,210)
 return NL, NM, NS, ZE, PS, PM, PL;
@@ -108,11 +108,11 @@ PLTC2= min (ZESD, NLAC)
 PLTC compare (PLTC1, PLTC2)
 
 PMTC1 = min (NMSD, ZEAC)
-PMTC2 min (ZESD, NMAC)
+PMTC2= min (ZESD, NMAC)
 PMTC = compare (PMTC1, PMTC2)
 
- PSTC1 min (NSSD, PSAC)
- PSTC2 min (ZESD, NSAC)
+ PSTC1 = min (NSSD, PSAC)
+ PSTC2 = min (ZESD, NSAC)
  PSTC= compare (PSTC1, PSTC2)
  NSTC= min (PSSD, NSAC)
  NLTC - min(PLSD, ZEAC)
